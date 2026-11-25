@@ -4,6 +4,8 @@ Updated: 2026-11-25
 
 ## Current reading guide
 
+Epic roadmap update — 2026-11-25: issues #20–#24 group the 19 current tasks; #25–#32 capture future nearby sync, supermarket integrations, barcode scanning, recipes/meal planning, shopping insights, AI suggestions, monetization and finally the shared household timetable. Future entries are discovery placeholders outside v1. Native sub-issue relationships remain pending tool support; linked checklists/backlinks preserve the grouping. See [epic index](docs/backlog/README.md) and [hierarchy manifest](docs/backlog/epics.json).
+
 Repository/backlog update: [Bazuzu77/shopping-list](https://github.com/Bazuzu77/shopping-list) is the project repository. [The backlog index](docs/backlog/README.md) links all 19 published issues and their dependencies. Keep issues short and human readable; put technical details in linked documents. The user explicitly authorized repository setup and backlog publication before implementation. Use GitHub issues for live execution status and repository specifications for durable requirements.
 
 The approved behavior has been consolidated into [docs/specs/product-behavior.md](docs/specs/product-behavior.md). Read that document for the current product rules and [docs/decisions/remaining-decisions.md](docs/decisions/remaining-decisions.md) for substantive gaps and technical work. The sections and batches below remain the chronological decision record; older “open” or “proposed” notes may have been superseded by later approvals summarized in those documents. The original handover remains unchanged. Consolidation is not implementation approval.

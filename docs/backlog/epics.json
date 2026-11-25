@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "ordering": "Current release first; future order is indicative, not a dependency chain. Shared household timetable is explicitly last.",
+  "nativeHierarchy": "pending: connector cannot set sub-issue relationships",
+  "epics": [
+    {
+      "id": "E01",
+      "title": "Epic: Offline shopping",
+      "children": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "goal": "Use the shopping list reliably without a connection.",
+      "horizon": "Current release",
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 20,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/20"
+    },
+    {
+      "id": "E02",
+      "title": "Epic: Accounts and households",
+      "children": [
+        5,
+        6,
+        7
+      ],
+      "goal": "Sign in, share a household and manage who has access.",
+      "horizon": "Current release",
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 21,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/21"
+    },
+    {
+      "id": "E03",
+      "title": "Epic: Sync and collaboration",
+      "children": [
+        8,
+        9,
+        10,
+        11,
+        16
+      ],
+      "goal": "Keep household devices in agreement and make conflicts understandable.",
+      "horizon": "Current release",
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 22,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/22"
+    },
+    {
+      "id": "E04",
+      "title": "Epic: Products and shopping lists",
+      "children": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "goal": "Reuse products, support useful units and manage everyday shopping lists.",
+      "horizon": "Current release",
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 23,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/23"
+    },
+    {
+      "id": "E05",
+      "title": "Epic: Privacy, testing and release",
+      "children": [
+        17,
+        18,
+        19
+      ],
+      "goal": "Protect household data, verify the complete app and prepare a safe release.",
+      "horizon": "Current release",
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 24,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/24"
+    },
+    {
+      "id": "E06",
+      "title": "Future epic: Device-to-device sync",
+      "children": [],
+      "goal": "Let two authorized household devices exchange shopping changes nearby without internet.",
+      "horizon": "Future",
+      "discovery": [
+        "Research supported iOS and Android discovery and transfer options.",
+        "Design explicit pairing and access checks, using the same shopping-change rules as cloud sync.",
+        "Test later cloud reconciliation; do not depend on NameDrop, touching phones or UWB."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 25,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/25"
+    },
+    {
+      "id": "E07",
+      "title": "Future epic: Supermarket integrations",
+      "children": [],
+      "goal": "Explore useful connections to supermarkets, starting with product information and offers.",
+      "horizon": "Future",
+      "discovery": [
+        "Choose the first supermarkets and countries with the user.",
+        "Check available APIs, permission to use data and ongoing costs.",
+        "Design product matching, offer freshness and optional price comparison; ordering and retailer-account access need separate decisions."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 26,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/26"
+    },
+    {
+      "id": "E08",
+      "title": "Future epic: Barcode scanning",
+      "children": [],
+      "goal": "Make it easier to find or add a product by scanning its barcode.",
+      "horizon": "Future",
+      "discovery": [
+        "Choose a permitted product-data source and define what happens when a barcode is unknown.",
+        "Reuse the household catalog instead of creating duplicates.",
+        "Design the camera flow and offline fallback before implementation."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 27,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/27"
+    },
+    {
+      "id": "E09",
+      "title": "Future epic: Recipes and meal planning",
+      "children": [],
+      "goal": "Help households turn planned meals into shopping needs.",
+      "horizon": "Future",
+      "discovery": [
+        "Agree how recipes and a meal plan should work.",
+        "Design ingredient-to-product matching and quantity/unit handling.",
+        "Preview additions to the shopping list so existing demand is not silently overwritten."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 28,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/28"
+    },
+    {
+      "id": "E10",
+      "title": "Future epic: Shopping insights",
+      "children": [],
+      "goal": "Explore useful summaries of a household’s shopping history.",
+      "horizon": "Future",
+      "discovery": [
+        "Choose which questions the household wants answered.",
+        "Confirm what data is available; do not assume prices or receipts already exist.",
+        "Keep summaries understandable and household-private."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 29,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/29"
+    },
+    {
+      "id": "E11",
+      "title": "Future epic: Optional AI suggestions",
+      "children": [],
+      "goal": "Explore suggestions that make shopping easier once the core app is reliable.",
+      "horizon": "Future",
+      "discovery": [
+        "Choose a concrete useful suggestion before selecting any AI service.",
+        "Decide consent, data sharing and cost limits.",
+        "Require user control over changes to shopping needs."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 30,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/30"
+    },
+    {
+      "id": "E12",
+      "title": "Future epic: Subscriptions and monetization",
+      "children": [],
+      "goal": "Explore a sustainable business model after validating the core product.",
+      "horizon": "Future",
+      "discovery": [
+        "Decide whether paid features, subscriptions or advertising are appropriate; none is selected yet.",
+        "Define what remains available without payment.",
+        "Review platform payment rules, privacy and ongoing operating costs before implementation."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 31,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/31"
+    },
+    {
+      "id": "E13",
+      "title": "Future epic: Shared household timetable",
+      "children": [],
+      "goal": "Explore a shared timetable for household activities beyond shopping.",
+      "horizon": "Farthest future",
+      "discovery": [
+        "Discuss which activities belong in the timetable and who can see or change them.",
+        "Decide reminders, recurring events and any calendar connections.",
+        "Design it as a later expansion after the shopping roadmap; no dates or delivery commitment yet."
+      ],
+      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "number": 32,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/32"
+    }
+  ]
+}

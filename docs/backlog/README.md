@@ -7,6 +7,28 @@ Repository: [Bazuzu77/shopping-list](https://github.com/Bazuzu77/shopping-list).
 Read [approved behavior](../specs/product-behavior.md), [sync design and approval](../architecture/sync-data-design.md), then the selected issue. F01–F04 have a detailed [implementation plan](../superpowers/plans/2026-11-25-foundation-offline-core.md). Later stages need a bounded plan before implementation. [Remaining decisions](../decisions/remaining-decisions.md) tracks engineering choices. [PLAN.md](../../PLAN.md) is historical; later approvals supersede older open questions.
 
 ## Work items
+ 
+## Epics and future roadmap
+
+Current work is grouped into five tracking epics. Future epics are placeholders, outside the first release; their detailed behavior and implementation are not approved. Their order is indicative, with the shared household timetable explicitly farthest away. The original handover remains unchanged.
+
+- [Epic: Offline shopping](https://github.com/Bazuzu77/shopping-list/issues/20) — #1, #2, #3, #4
+- [Epic: Accounts and households](https://github.com/Bazuzu77/shopping-list/issues/21) — #5, #6, #7
+- [Epic: Sync and collaboration](https://github.com/Bazuzu77/shopping-list/issues/22) — #8, #9, #10, #11, #16
+- [Epic: Products and shopping lists](https://github.com/Bazuzu77/shopping-list/issues/23) — #12, #13, #14, #15
+- [Epic: Privacy, testing and release](https://github.com/Bazuzu77/shopping-list/issues/24) — #17, #18, #19
+- [Future epic: Device-to-device sync](https://github.com/Bazuzu77/shopping-list/issues/25) — Future
+- [Future epic: Supermarket integrations](https://github.com/Bazuzu77/shopping-list/issues/26) — Future
+- [Future epic: Barcode scanning](https://github.com/Bazuzu77/shopping-list/issues/27) — Future
+- [Future epic: Recipes and meal planning](https://github.com/Bazuzu77/shopping-list/issues/28) — Future
+- [Future epic: Shopping insights](https://github.com/Bazuzu77/shopping-list/issues/29) — Future
+- [Future epic: Optional AI suggestions](https://github.com/Bazuzu77/shopping-list/issues/30) — Future
+- [Future epic: Subscriptions and monetization](https://github.com/Bazuzu77/shopping-list/issues/31) — Future
+- [Future epic: Shared household timetable](https://github.com/Bazuzu77/shopping-list/issues/32) — Farthest future
+
+Native parent/sub-issue relationships are not set: the connector cannot create them. Current grouping uses task checklists and backlinks. [epics.json](epics.json) records the exact intended hierarchy for later native linking. This is not a GitHub issue-type configuration or a milestone assignment.
+
+## Individual tasks
 
 | Issue | Stage | Depends on |
 | --- | --- | --- |
