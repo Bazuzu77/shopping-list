@@ -15,4 +15,3 @@ An offline-first household shopping app planned for iOS and Android. This reposi
 Planning baseline: Expo/React Native/TypeScript/SQLite mobile client; Go/PostgreSQL modular API; DigitalOcean hosting subject to later deployment approval. No provider, credentials or deployment is configured here.
 
 Use GitHub issues for execution status once published. Keep durable specifications in the repository and link acceptance evidence from each completed issue.
-

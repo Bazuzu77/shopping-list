@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "repository": "https://github.com/Bazuzu77/shopping-list",
+  "publicationStatus": "19 issues published",
+  "items": [
+    {
+      "id": "F01",
+      "milestone": "Foundation",
+      "title": "Set up the app and handle quantities correctly",
+      "dependsOn": [],
+      "scope": "Create the mobile project and make quantity input reliable.",
+      "acceptance": [
+        "Accept decimal points or commas for decimal units.",
+        "Allow only whole numbers for units such as cartons.",
+        "Round to three decimal places; ask the user if a positive amount rounds to zero."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 1,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/1"
+      }
+    },
+    {
+      "id": "F02",
+      "milestone": "Foundation",
+      "title": "Track what is needed and what was bought",
+      "dependsOn": [
+        "F01"
+      ],
+      "scope": "Keep shopping needs and individual purchases separate.",
+      "acceptance": [
+        "Purchases by different people add together; retrying a save never counts twice.",
+        "Undoing a purchase keeps the requested amount unchanged.",
+        "A new shopping need is not fulfilled by purchases from an earlier one."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 2,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/2"
+      }
+    },
+    {
+      "id": "F03",
+      "milestone": "Foundation",
+      "title": "Keep offline changes safe after closing the app",
+      "dependsOn": [
+        "F02"
+      ],
+      "scope": "Save shopping changes and the work waiting to sync together.",
+      "acceptance": [
+        "Closing or crashing the app does not lose a saved purchase.",
+        "Retrying a save does not create a duplicate.",
+        "One account cannot see another account’s saved data."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 3,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/3"
+      }
+    },
+    {
+      "id": "F04",
+      "milestone": "Foundation",
+      "title": "Build the first offline shopping screen",
+      "dependsOn": [
+        "F03"
+      ],
+      "scope": "Create a development version to try the basic shopping flow.",
+      "acceptance": [
+        "Add an item, edit its amount, buy the remaining amount or enter an amount manually, and undo a purchase.",
+        "The list survives restarting the app; purchased items appear in a collapsed section at the bottom.",
+        "The screen clearly shows unsynced changes; test accounts are unavailable in release builds."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 4,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/4"
+      }
+    },
+    {
+      "id": "A01",
+      "milestone": "Identity",
+      "title": "Choose a sign-in service",
+      "dependsOn": [],
+      "scope": "Check which hosted sign-in service supports our approved account rules.",
+      "acceptance": [
+        "Email codes and an optional password work for the same account.",
+        "Email changes, password recovery, account deletion and signing out other devices are supported.",
+        "Record costs and limitations before choosing a provider; paid services need separate approval."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 5,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/5"
+      }
+    },
+    {
+      "id": "A02",
+      "milestone": "Identity",
+      "title": "Add sign-in and protect saved account data",
+      "dependsOn": [
+        "A01",
+        "F03"
+      ],
+      "scope": "Connect real accounts and keep each person’s local data private.",
+      "acceptance": [
+        "Previously signed-in users can keep working offline.",
+        "Signing out hides saved data and warns about unsynced changes.",
+        "Revoked access is enforced when the app reconnects; a new account cannot inherit an old account’s data."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 6,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/6"
+      }
+    },
+    {
+      "id": "H01",
+      "milestone": "Households",
+      "title": "Create households and invite members",
+      "dependsOn": [
+        "A02"
+      ],
+      "scope": "Let people create a household, invite others and manage membership.",
+      "acceptance": [
+        "Household creation offers an empty or starter catalog and an empty Shopping list.",
+        "Invitations work once, expire after seven days and require an explicit Join action.",
+        "Leaving, removal, owner succession and unassigned shopping needs follow the approved rules."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 7,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/7"
+      }
+    },
+    {
+      "id": "S01",
+      "milestone": "Synchronization",
+      "title": "Define how offline changes are exchanged",
+      "dependsOn": [
+        "F02"
+      ],
+      "scope": "Write the shared rules that the app and server use to exchange changes.",
+      "acceptance": [
+        "Every change can be retried safely and tied to the action it depends on.",
+        "Old offline work can reconnect without losing valid changes or restoring permanently deleted data.",
+        "Examples cover conflicts, shopping cycles and the approved D1–D7 decisions."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 8,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/8"
+      }
+    },
+    {
+      "id": "S02",
+      "milestone": "Synchronization",
+      "title": "Save shared changes safely on the server",
+      "dependsOn": [
+        "S01",
+        "H01"
+      ],
+      "scope": "Build the server foundation for accepting household changes.",
+      "acceptance": [
+        "Only current household members can read or change its data.",
+        "A repeated request has only one effect.",
+        "Each accepted change and its result are saved together, and clients can retrieve every accepted change."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 9,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/9"
+      }
+    },
+    {
+      "id": "S03",
+      "milestone": "Synchronization",
+      "title": "Sync phones after working offline",
+      "dependsOn": [
+        "S02",
+        "F03"
+      ],
+      "scope": "Send pending changes and download shared updates when a connection returns.",
+      "acceptance": [
+        "Retries and interrupted connections do not lose or duplicate purchases.",
+        "Phones catch up after a long absence while preserving valid offline work.",
+        "The app shows successful sync only after the server confirms it."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 10,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/10"
+      }
+    },
+    {
+      "id": "S04",
+      "milestone": "Synchronization",
+      "title": "Resolve conflicts without losing shopping intent",
+      "dependsOn": [
+        "S03"
+      ],
+      "scope": "Apply the agreed rules when people change the same shopping data.",
+      "acceptance": [
+        "Quantity conflicts follow the household setting; independent purchases still add together.",
+        "Unclear old-versus-new shopping needs ask whether to merge or keep separate.",
+        "Manual choices, competing corrections and undo follow the approved rules."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 11,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/11"
+      }
+    },
+    {
+      "id": "C01",
+      "milestone": "Catalog and lists",
+      "title": "Reuse products and prevent duplicates",
+      "dependsOn": [
+        "S04"
+      ],
+      "scope": "Help people choose existing household products before creating new ones.",
+      "acceptance": [
+        "Check existing products and suggest similar matches.",
+        "Merge or keep separate using the approved choices; preserve units and purchase history.",
+        "Retired products and reused names do not overwrite older records."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 12,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/12"
+      }
+    },
+    {
+      "id": "C02",
+      "milestone": "Catalog and lists",
+      "title": "Support useful units and custom units",
+      "dependsOn": [
+        "C01"
+      ],
+      "scope": "Support whole-number and decimal measures, including household-created units.",
+      "acceptance": [
+        "Users can create units; the default is whole numbers.",
+        "Only combine units representing the same measure and scale, with confirmation where needed.",
+        "Conflicting unit edits preserve purchases and ask for correction without silently converting amounts."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 13,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/13"
+      }
+    },
+    {
+      "id": "L01",
+      "milestone": "Catalog and lists",
+      "title": "Add multiple lists, buyers and notes",
+      "dependsOn": [
+        "C02"
+      ],
+      "scope": "Complete the everyday list views and editing features.",
+      "acceptance": [
+        "Support multiple lists, common and grouped views, and remembered view preferences.",
+        "New items are assigned to their creator; ordinary edits preserve the buyer.",
+        "Merged or conflicting notes preserve the agreed text; name conflicts never discard contents."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 14,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/14"
+      }
+    },
+    {
+      "id": "L02",
+      "milestone": "Catalog and lists",
+      "title": "Delete and restore lists and items correctly",
+      "dependsOn": [
+        "L01"
+      ],
+      "scope": "Apply the agreed deletion, restoration and permanent-deletion rules.",
+      "acceptance": [
+        "Deletion conflicts are reported; purchases can keep an item visible as agreed.",
+        "Undoing such a purchase does not silently hide the item again.",
+        "Restoring old purchases does not satisfy new demand; permanent list deletion cannot be undone by old offline work."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 15,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/15"
+      }
+    },
+    {
+      "id": "N01",
+      "milestone": "Notifications",
+      "title": "Show useful in-app notices and push alerts",
+      "dependsOn": [
+        "S04",
+        "A02"
+      ],
+      "scope": "Tell the right people about conflicts without unnecessary alerts.",
+      "acceptance": [
+        "Use the approved recipients and channels; in-app-only events never become push alerts.",
+        "Reading a notice does not resolve an outstanding choice.",
+        "Group related alerts and handle delivery retries without relying on push for synchronization."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 16,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/16"
+      }
+    },
+    {
+      "id": "P01",
+      "milestone": "Privacy and recovery",
+      "title": "Handle account deletion and lost access",
+      "dependsOn": [
+        "L02",
+        "H01"
+      ],
+      "scope": "Remove access and personal information according to the approved rules.",
+      "acceptance": [
+        "Account deletion requires fresh verification and preserves other members’ shared history as Deleted member.",
+        "Closing the last membership removes the household; removed users cannot export its data.",
+        "Document backup deletion and mailbox-recovery limits, and test that deleted data cannot return."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 17,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/17"
+      }
+    },
+    {
+      "id": "Q01",
+      "milestone": "Validation",
+      "title": "Test offline use and collaboration end to end",
+      "dependsOn": [
+        "N01",
+        "P01"
+      ],
+      "scope": "Check the complete experience across devices and unreliable connections.",
+      "acceptance": [
+        "Test crashes, retries, long offline periods and several people editing together.",
+        "Cover all approved conflict and deletion outcomes, including D1–D7.",
+        "Record actual device coverage and confirm that accounts and households stay isolated."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 18,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/18"
+      }
+    },
+    {
+      "id": "R01",
+      "milestone": "Release",
+      "title": "Prepare hosting and a beta release",
+      "dependsOn": [
+        "Q01"
+      ],
+      "scope": "Prepare a concrete deployment and testing proposal when the app is ready.",
+      "acceptance": [
+        "Confirm app name, platform accounts, test devices, beta audience and costs.",
+        "Plan hosting, backups, monitoring and recovery without disrupting existing services.",
+        "Get separate approval before deployment, signing or publication."
+      ],
+      "status": "backlog",
+      "githubIssue": {
+        "number": 19,
+        "url": "https://github.com/Bazuzu77/shopping-list/issues/19"
+      }
+    }
+  ]
+}
