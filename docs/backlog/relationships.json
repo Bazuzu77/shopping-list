@@ -1,0 +1,172 @@
+{
+  "parents": [
+    {
+      "parent": 20,
+      "child": 1
+    },
+    {
+      "parent": 20,
+      "child": 2
+    },
+    {
+      "parent": 20,
+      "child": 3
+    },
+    {
+      "parent": 20,
+      "child": 4
+    },
+    {
+      "parent": 21,
+      "child": 5
+    },
+    {
+      "parent": 21,
+      "child": 6
+    },
+    {
+      "parent": 21,
+      "child": 7
+    },
+    {
+      "parent": 22,
+      "child": 8
+    },
+    {
+      "parent": 22,
+      "child": 9
+    },
+    {
+      "parent": 22,
+      "child": 10
+    },
+    {
+      "parent": 22,
+      "child": 11
+    },
+    {
+      "parent": 22,
+      "child": 16
+    },
+    {
+      "parent": 23,
+      "child": 12
+    },
+    {
+      "parent": 23,
+      "child": 13
+    },
+    {
+      "parent": 23,
+      "child": 14
+    },
+    {
+      "parent": 23,
+      "child": 15
+    },
+    {
+      "parent": 24,
+      "child": 17
+    },
+    {
+      "parent": 24,
+      "child": 18
+    },
+    {
+      "parent": 24,
+      "child": 19
+    }
+  ],
+  "repository": "Bazuzu77/shopping-list",
+  "verifiedAt": "2026-11-28T07:15:40.5560747Z",
+  "dependencies": [
+    {
+      "issue": 19,
+      "blockedBy": 18
+    },
+    {
+      "issue": 18,
+      "blockedBy": 16
+    },
+    {
+      "issue": 18,
+      "blockedBy": 17
+    },
+    {
+      "issue": 17,
+      "blockedBy": 15
+    },
+    {
+      "issue": 17,
+      "blockedBy": 7
+    },
+    {
+      "issue": 16,
+      "blockedBy": 11
+    },
+    {
+      "issue": 16,
+      "blockedBy": 6
+    },
+    {
+      "issue": 15,
+      "blockedBy": 14
+    },
+    {
+      "issue": 14,
+      "blockedBy": 13
+    },
+    {
+      "issue": 13,
+      "blockedBy": 12
+    },
+    {
+      "issue": 12,
+      "blockedBy": 11
+    },
+    {
+      "issue": 11,
+      "blockedBy": 10
+    },
+    {
+      "issue": 10,
+      "blockedBy": 9
+    },
+    {
+      "issue": 10,
+      "blockedBy": 3
+    },
+    {
+      "issue": 9,
+      "blockedBy": 8
+    },
+    {
+      "issue": 9,
+      "blockedBy": 7
+    },
+    {
+      "issue": 7,
+      "blockedBy": 6
+    },
+    {
+      "issue": 6,
+      "blockedBy": 5
+    },
+    {
+      "issue": 6,
+      "blockedBy": 3
+    },
+    {
+      "issue": 4,
+      "blockedBy": 3
+    },
+    {
+      "issue": 3,
+      "blockedBy": 2
+    },
+    {
+      "issue": 2,
+      "blockedBy": 1
+    }
+  ]
+}

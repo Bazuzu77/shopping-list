@@ -1,7 +1,7 @@
 {
   "version": 1,
   "ordering": "Current release first; future order is indicative, not a dependency chain. Shared household timetable is explicitly last.",
-  "nativeHierarchy": "pending: connector cannot set sub-issue relationships",
+  "nativeHierarchy": "verified: 19 native sub-issue relationships on 2026-11-28",
   "epics": [
     {
       "id": "E01",
@@ -14,7 +14,7 @@
       ],
       "goal": "Use the shopping list reliably without a connection.",
       "horizon": "Current release",
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "native sub-issues verified",
       "number": 20,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/20"
     },
@@ -28,7 +28,7 @@
       ],
       "goal": "Sign in, share a household and manage who has access.",
       "horizon": "Current release",
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "native sub-issues verified",
       "number": 21,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/21"
     },
@@ -44,7 +44,7 @@
       ],
       "goal": "Keep household devices in agreement and make conflicts understandable.",
       "horizon": "Current release",
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "native sub-issues verified",
       "number": 22,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/22"
     },
@@ -59,7 +59,7 @@
       ],
       "goal": "Reuse products, support useful units and manage everyday shopping lists.",
       "horizon": "Current release",
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "native sub-issues verified",
       "number": 23,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/23"
     },
@@ -73,7 +73,7 @@
       ],
       "goal": "Protect household data, verify the complete app and prepare a safe release.",
       "horizon": "Current release",
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "native sub-issues verified",
       "number": 24,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/24"
     },
@@ -88,7 +88,7 @@
         "Design explicit pairing and access checks, using the same shopping-change rules as cloud sync.",
         "Test later cloud reconciliation; do not depend on NameDrop, touching phones or UWB."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 25,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/25"
     },
@@ -103,7 +103,7 @@
         "Check available APIs, permission to use data and ongoing costs.",
         "Design product matching, offer freshness and optional price comparison; ordering and retailer-account access need separate decisions."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 26,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/26"
     },
@@ -118,7 +118,7 @@
         "Reuse the household catalog instead of creating duplicates.",
         "Design the camera flow and offline fallback before implementation."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 27,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/27"
     },
@@ -133,7 +133,7 @@
         "Design ingredient-to-product matching and quantity/unit handling.",
         "Preview additions to the shopping list so existing demand is not silently overwritten."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 28,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/28"
     },
@@ -148,7 +148,7 @@
         "Confirm what data is available; do not assume prices or receipts already exist.",
         "Keep summaries understandable and household-private."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 29,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/29"
     },
@@ -163,7 +163,7 @@
         "Decide consent, data sharing and cost limits.",
         "Require user control over changes to shopping needs."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 30,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/30"
     },
@@ -178,7 +178,7 @@
         "Define what remains available without payment.",
         "Review platform payment rules, privacy and ongoing operating costs before implementation."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 31,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/31"
     },
@@ -193,7 +193,7 @@
         "Decide reminders, recurring events and any calendar connections.",
         "Design it as a later expansion after the shopping roadmap; no dates or delivery commitment yet."
       ],
-      "relationshipStatus": "linked checklists; native sub-issue links pending",
+      "relationshipStatus": "future epic; no child tasks yet",
       "number": 32,
       "url": "https://github.com/Bazuzu77/shopping-list/issues/32"
     }

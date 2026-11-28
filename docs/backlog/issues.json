@@ -137,10 +137,8 @@
       "id": "S01",
       "milestone": "Synchronization",
       "title": "Define how offline changes are exchanged",
-      "dependsOn": [
-        "F02"
-      ],
-      "scope": "Write the shared rules that the app and server use to exchange changes.",
+      "dependsOn": [],
+      "scope": "Finish exact exchange formats, retained history rules and worked examples; approved design is already uploaded.",
       "acceptance": [
         "Every change can be retried safely and tied to the action it depends on.",
         "Old offline work can reconnect without losing valid changes or restoring permanently deleted data.",

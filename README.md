@@ -4,6 +4,8 @@ An offline-first household shopping app planned for iOS and Android. This reposi
 
 ## Start here
 
+Open the [project plan](https://github.com/users/Bazuzu77/projects/1/views/2), [work board](https://github.com/users/Bazuzu77/projects/1/views/3), or [dependency diagram](docs/backlog/dependencies.md). The project is private; repository documentation remains public.
+
 1. [Product behavior](docs/specs/product-behavior.md) — current approved requirements.
 2. [Synchronization design](docs/architecture/sync-data-design.md) — identities, offline operations and approved conflict outcomes.
 3. [Backlog](docs/backlog/README.md) — ordered work and dependencies, independent of conversation context.

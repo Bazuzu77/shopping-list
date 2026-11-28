@@ -6,8 +6,12 @@ Repository: [Bazuzu77/shopping-list](https://github.com/Bazuzu77/shopping-list).
 
 Read [approved behavior](../specs/product-behavior.md), [sync design and approval](../architecture/sync-data-design.md), then the selected issue. F01–F04 have a detailed [implementation plan](../superpowers/plans/2026-11-25-foundation-offline-core.md). Later stages need a bounded plan before implementation. [Remaining decisions](../decisions/remaining-decisions.md) tracks engineering choices. [PLAN.md](../../PLAN.md) is historical; later approvals supersede older open questions.
 
-## Work items
- 
+## GitHub Project
+
+[Plan: ordered epics](https://github.com/users/Bazuzu77/projects/1/views/2) · [Work board](https://github.com/users/Bazuzu77/projects/1/views/3) · [Future](https://github.com/users/Bazuzu77/projects/1/views/4) · [Dependency diagram](dependencies.md).
+
+The project contains all 32 issues. It is private to the owner and authorized collaborators; the repository remains public. Roadmap order controls display, not dates or hard dependencies. The timetable stays last. Actual blockers are recorded through native issue relationships.
+
 ## Epics and future roadmap
 
 Current work is grouped into five tracking epics. Future epics are placeholders, outside the first release; their detailed behavior and implementation are not approved. Their order is indicative, with the shared household timetable explicitly farthest away. The original handover remains unchanged.
@@ -26,7 +30,7 @@ Current work is grouped into five tracking epics. Future epics are placeholders,
 - [Future epic: Subscriptions and monetization](https://github.com/Bazuzu77/shopping-list/issues/31) — Future
 - [Future epic: Shared household timetable](https://github.com/Bazuzu77/shopping-list/issues/32) — Farthest future
 
-Native parent/sub-issue relationships are not set: the connector cannot create them. Current grouping uses task checklists and backlinks. [epics.json](epics.json) records the exact intended hierarchy for later native linking. This is not a GitHub issue-type configuration or a milestone assignment.
+Native relationships verified on 2026-11-28: 19 sub-issues under the five current epics, plus 22 blocked-by links. Checklists and backlinks remain useful navigation. [epics.json](epics.json) and [relationships.json](relationships.json) preserve the grouping and dependency map. This is not a custom GitHub issue-type configuration or a milestone assignment.
 
 ## Individual tasks
 
@@ -39,7 +43,7 @@ Native parent/sub-issue relationships are not set: the connector cannot create t
 | [#5 Choose a sign-in service](https://github.com/Bazuzu77/shopping-list/issues/5) | Identity | None |
 | [#6 Add sign-in and protect saved account data](https://github.com/Bazuzu77/shopping-list/issues/6) | Identity | [#5](https://github.com/Bazuzu77/shopping-list/issues/5), [#3](https://github.com/Bazuzu77/shopping-list/issues/3) |
 | [#7 Create households and invite members](https://github.com/Bazuzu77/shopping-list/issues/7) | Households | [#6](https://github.com/Bazuzu77/shopping-list/issues/6) |
-| [#8 Define how offline changes are exchanged](https://github.com/Bazuzu77/shopping-list/issues/8) | Synchronization | [#2](https://github.com/Bazuzu77/shopping-list/issues/2) |
+| [#8 Define how offline changes are exchanged](https://github.com/Bazuzu77/shopping-list/issues/8) | Synchronization | None; #2 is related work |
 | [#9 Save shared changes safely on the server](https://github.com/Bazuzu77/shopping-list/issues/9) | Synchronization | [#8](https://github.com/Bazuzu77/shopping-list/issues/8), [#7](https://github.com/Bazuzu77/shopping-list/issues/7) |
 | [#10 Sync phones after working offline](https://github.com/Bazuzu77/shopping-list/issues/10) | Synchronization | [#9](https://github.com/Bazuzu77/shopping-list/issues/9), [#3](https://github.com/Bazuzu77/shopping-list/issues/3) |
 | [#11 Resolve conflicts without losing shopping intent](https://github.com/Bazuzu77/shopping-list/issues/11) | Synchronization | [#10](https://github.com/Bazuzu77/shopping-list/issues/10) |

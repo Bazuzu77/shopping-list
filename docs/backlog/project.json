@@ -1,0 +1,46 @@
+{
+  "visibility": "private",
+  "dependencies": 22,
+  "nativeParentLinks": 19,
+  "views": [
+    {
+      "name": "Plan",
+      "layout": "table",
+      "html_url": "https://github.com/users/Bazuzu77/projects/1/views/2",
+      "filter": "kind:Epic",
+      "sort_by": [
+        [
+          451737382,
+          "asc"
+        ]
+      ]
+    },
+    {
+      "name": "Work board",
+      "layout": "board",
+      "html_url": "https://github.com/users/Bazuzu77/projects/1/views/3",
+      "filter": "kind:Task",
+      "sort_by": [
+        [
+          451737382,
+          "asc"
+        ]
+      ]
+    },
+    {
+      "name": "Future",
+      "layout": "table",
+      "html_url": "https://github.com/users/Bazuzu77/projects/1/views/4",
+      "filter": "kind:Epic -horizon:\"Current release\"",
+      "sort_by": [
+        [
+          451737382,
+          "asc"
+        ]
+      ]
+    }
+  ],
+  "items": 32,
+  "url": "https://github.com/users/Bazuzu77/projects/1",
+  "verifiedOn": "2026-11-28"
+}

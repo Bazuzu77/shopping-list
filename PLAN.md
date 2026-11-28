@@ -4,6 +4,8 @@ Updated: 2026-11-25
 
 ## Current reading guide
 
+2026-11-28 update: [GitHub Project](https://github.com/users/Bazuzu77/projects/1/views/2) now holds all 32 issues with Plan, Work board and Future views. Native epic membership (19 links) and blockers (22 links) are verified. This supersedes earlier tool-limit notes. Issue #8 remains partially complete: approved design is uploaded, exact exchange formats and worked examples remain; #2 is related rather than a hard prerequisite. See [dependency diagram](docs/backlog/dependencies.md).
+
 Epic roadmap update — 2026-11-25: issues #20–#24 group the 19 current tasks; #25–#32 capture future nearby sync, supermarket integrations, barcode scanning, recipes/meal planning, shopping insights, AI suggestions, monetization and finally the shared household timetable. Future entries are discovery placeholders outside v1. Native sub-issue relationships remain pending tool support; linked checklists/backlinks preserve the grouping. See [epic index](docs/backlog/README.md) and [hierarchy manifest](docs/backlog/epics.json).
 
 Repository/backlog update: [Bazuzu77/shopping-list](https://github.com/Bazuzu77/shopping-list) is the project repository. [The backlog index](docs/backlog/README.md) links all 19 published issues and their dependencies. Keep issues short and human readable; put technical details in linked documents. The user explicitly authorized repository setup and backlog publication before implementation. Use GitHub issues for live execution status and repository specifications for durable requirements.
