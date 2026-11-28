@@ -10,7 +10,7 @@ Read [approved behavior](../specs/product-behavior.md), [sync design and approva
 
 [Plan: ordered epics](https://github.com/users/Bazuzu77/projects/1/views/2) · [Work board](https://github.com/users/Bazuzu77/projects/1/views/3) · [Future](https://github.com/users/Bazuzu77/projects/1/views/4) · [Dependency diagram](dependencies.md).
 
-The project contains all 33 issues. It is private to the owner and authorized collaborators; the repository remains public. Roadmap order controls display, not dates or hard dependencies. Architecture comes first and the timetable stays last. Actual blockers are recorded through native issue relationships.
+The project contains all 34 issues. It is private to the owner and authorized collaborators; the repository remains public. Roadmap order controls display, not dates or hard dependencies. Architecture comes first and the timetable stays last. Actual blockers are recorded through native issue relationships.
 
 ## Epics and future roadmap
 
@@ -24,6 +24,7 @@ Current work is grouped into six tracking epics. Future epics are placeholders, 
 - [Epic: Privacy, testing and release](https://github.com/Bazuzu77/shopping-list/issues/24) — #17, #18, #19
 - [Future epic: Device-to-device sync](https://github.com/Bazuzu77/shopping-list/issues/25) — Future
 - [Future epic: Supermarket integrations](https://github.com/Bazuzu77/shopping-list/issues/26) — Future
+- [Future epic: Recommend the best approved store](https://github.com/Bazuzu77/shopping-list/issues/34) — Future
 - [Future epic: Barcode scanning](https://github.com/Bazuzu77/shopping-list/issues/27) — Future
 - [Future epic: Recipes and meal planning](https://github.com/Bazuzu77/shopping-list/issues/28) — Future
 - [Future epic: Shopping insights](https://github.com/Bazuzu77/shopping-list/issues/29) — Future
@@ -65,4 +66,5 @@ Native relationships verified on 2026-11-28: 19 sub-issues under the six current
 - Update the specification when an approved decision changes, then update affected issues; do not rely on chat memory.
 - Stable backlog IDs in issue bodies prevent duplicate creation during publication retries.
 - Repository/backlog setup is authorized. Application implementation, paid services and deployment are separate commitments.
+
 

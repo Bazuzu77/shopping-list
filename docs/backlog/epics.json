@@ -119,6 +119,21 @@
       "url": "https://github.com/Bazuzu77/shopping-list/issues/26"
     },
     {
+      "id": "E15",
+      "title": "Future epic: Recommend the best approved store",
+      "children": [],
+      "goal": "Review the shopping list and recommend the best store from household-approved options.",
+      "horizon": "Future",
+      "discovery": [
+        "Agree what best means and how approved stores are managed.",
+        "Check product, quantity, price and availability data; explain uncertainty.",
+        "Define substitutions and incomplete-data handling before implementation."
+      ],
+      "relationshipStatus": "future epic; no child tasks yet",
+      "number": 34,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/34"
+    },
+    {
       "id": "E08",
       "title": "Future epic: Barcode scanning",
       "children": [],
