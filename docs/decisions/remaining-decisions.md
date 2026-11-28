@@ -1,53 +1,61 @@
-# Remaining Decisions and Design Work
+# What remains to be decided
 
-Reviewed: 2026-11-25. Companion to [product-behavior.md](../specs/product-behavior.md).
+Updated 2026-11-28. The main shopping behavior is agreed. This page separates genuinely unfinished work from questions already answered.
 
-The main product behavior is settled. Do not restart the earlier sequence of tiny approval questions. Draft coherent proposals for the substantive gaps below, use reasonable documented implementation choices for routine details, and ask only where a choice changes user-visible outcomes or operating commitments. No implementation or deployment is authorized yet.
+## Decisions we do not need to ask again
 
-## 1. Product gaps that affect outcomes
+| Situation | Agreed result |
+| --- | --- |
+| An old offline addition might belong to a new shopping trip | Ask whether to combine it with the current need or keep it separate |
+| A purchase prevented deletion, then someone undoes that purchase | Keep the item or list visible |
+| People combine custom units | Require confirmation that they mean the same measure and scale |
+| People change an item's unit in conflicting ways | Ask for a choice; keep affected purchases available for correction without converting them silently |
+| A name needed during conflict handling is now taken | Keep both records accessible and show that a name needs choosing |
+| Someone loses their old mailbox | Recover access through the email provider; support does not bypass proof of account ownership |
+| Someone loses household access | Do not offer an export that exposes the removed household's data |
+| Who handles sign-in? | Prefer an established hosted service; the actual provider is not selected |
 
-Approval update — 2026-11-25: the user approved the presented D1–D7 defaults and hosted-identity direction. Those entries below are retained as discovery history, not questions to ask again. Exact provider selection, operational limits, catalog-default/late-candidate compatibility checks and implementation validation remain engineering work. Next bounded milestone: [foundation and offline core plan](../superpowers/plans/2026-11-25-foundation-offline-core.md).
+These are the D1–D7 decisions in the [offline design](../architecture/sync-data-design.md). They are approved, not open questions.
 
-| Gap | Why it matters | Proposed direction — not yet approved |
+## Work still needed
+
+| Work | What needs to be written or checked | Tracked in |
 | --- | --- | --- |
-| Delayed additions across shopping cycles | A phone adds milk without knowing another demand was completed/deleted. Name matching alone cannot tell repeat shopping from duplication. | Define demand/cycle identity and preserve intentional new demand; present concrete offline examples with the sync proposal. |
-| Purchase undone after overriding deletion | A concurrent purchase kept a deleted item/list visible. Undoing that purchase leaves an unclear visibility result. | Keep the already-restored visibility rather than silently delete again; confirm with related lifecycle cases together. |
-| Product identity versus units | Catalog-name uniqueness and list name+unit matching are separate. Two same-name catalog creations can have different defaults without being different products. | One active catalog product per normalized name, with independent demand units; manual choice for incompatible defaults. Confirm how offline default conflicts resolve. |
-| Custom-unit equivalence | Users can create arbitrary units; similar strings cannot prove same measure/scale. | Explicit equivalence confirmation for custom-unit combination; prohibit known incompatible built-in measures. Do not silently introduce conversion. |
-| Account/access recovery | Verified access to both email addresses is required for email change. Losing the old mailbox or rejected offline work has no approved recovery path. | Specify support/no-recovery options and rejected-work retention without reopening removed-household access. |
-| Cross-layer edge cases | Permanent deletion, retirement, merges, pending resolutions and renamed identities can overlap. | Draft a bounded set of rules for precedence and history; elevate only cases whose user outcome is not implied by approved rules. |
+| Choose sign-in service | Email codes, optional passwords, recovery, email changes, account deletion, signing out other devices, costs and limitations | [#5](https://github.com/Bazuzu77/shopping-list/issues/5) |
+| Finish the exchange rules | Exact messages sent between phone and server, replies, and examples with expected results | [#8](https://github.com/Bazuzu77/shopping-list/issues/8) |
+| Catch up after a long absence | What information must be kept after older update history is removed, so valid offline work survives and deleted data cannot return | [#8](https://github.com/Bazuzu77/shopping-list/issues/8) |
+| Check two remaining proposals | Same-name products created with different default units; a new competing edit arriving after a conflict was resolved | [#8](https://github.com/Bazuzu77/shopping-list/issues/8) |
+| Protect data on phones | Account separation, encrypted storage support, sign-out, lost membership and revoked sessions | [#6](https://github.com/Bazuzu77/shopping-list/issues/6) |
+| Choose and test notifications | Delivery provider, correct recipients, grouping and safe retries | [#16](https://github.com/Bazuzu77/shopping-list/issues/16) |
+| Deletion and backup handling | How long backups remain, how deletions are reapplied after recovery, and what we can honestly promise users | [#17](https://github.com/Bazuzu77/shopping-list/issues/17) |
+| Prepare the actual build and release | Supported tool versions, database changes, device checks, hosting setup, monitoring and release requirements | Feature plans and [#19](https://github.com/Bazuzu77/shopping-list/issues/19) |
 
-Notes: partial purchases are purchases and should be modeled consistently with the approved deletion/purchase rule; document this interpretation in the technical proposal rather than treating every partial amount as a new feature question. More than two editors can conflict: the protocol must generalize recipients and candidates without leaking unrelated household data.
+The proposed technical defaults are not all approved promises. These include maximum quantities, how often phones check for updates, how long update history is retained, and how briefly alerts are grouped. Their purpose and suggested values remain in the [engineering reference](../architecture/sync-data-design.md#engineering-reference).
 
-## 2. Technical designs to prepare, not questions to repeat
+## Details the builder can normally settle
 
-1. **Synchronization contract.** Operation IDs, stable entities/aliases, causal metadata, transactions, accepted-change sequence/checkpoints, stale-device recovery, tombstones and conflict IDs. Define which guarantees depend on server acceptance order; do not promise universal delivery-order independence where approved rules explicitly use that order.
-2. **Conflict policy versions.** Bind the current household policy when a conflict is discovered; retain it for pending conflicts. Specify resolution validity when additional concurrent operations arrive later.
-3. **Merge model.** Separate catalog identities from demand generations and purchases; preserve exact quantities and attribution through merged products/units. Define partial restore merges without importing old completed purchases into fresh demand.
-4. **Identity and sessions.** Select an authentication approach supporting one account with code/password, persistent sessions, revocation, online sensitive actions and offline expiry. Evaluate provider integration with the selected Go/PostgreSQL/DigitalOcean baseline; no provider is approved yet.
-5. **Local storage/privacy.** Account-isolated SQLite/outbox and credentials; logout, removal, revoked sessions, permanent deletion and backup retention. User-facing deletion must not be confused with instantaneous physical removal from all backups. Review applicable privacy/store requirements against current official sources during this design.
-6. **Notifications.** Push provider, authenticated device registration, in-app durable notices, grouping, read-versus-resolved state and no repeated delivery effects. Push is never the source of truth.
-7. **Validation and usability.** Exact decimal storage/tie rounding, bounds, Unicode/name normalization, display-name collation, unit equivalence, similarity thresholds, note text identity and deterministic ordering. Record choices with useful acceptance cases; do not burden the user with implementation trivia.
-8. **Foundation.** Resolve workspace Git/toolchain issues, pin currently supported dependencies, decide migration/state tooling and document reproducible checks. Historical inspection results in PLAN.md require re-verification.
+Write down and test these without restarting a long series of small product questions:
 
-## 3. User/environment facts needed before implementation or release
+- How names are compared for exact matches, how similar-name suggestions are ranked, and how alphabetical ordering works.
+- What makes two notes identical, how new offline entries are ordered, and how rounding ties are handled.
+- How the app and server identify the same change, its earlier dependencies and the last state the person had seen.
+- How merged records retain their original identities and purchase history.
+- How more than two people are included in a conflict and its notifications.
+- How a partial purchase follows the same deletion-conflict rules as a full purchase.
 
-- Confirm whether the existing Go planning baseline stands or whether the earlier Spring Boot question needs a focused comparison. Do not silently change stack.
-- Authentication/push/email service constraints and budget before selecting paid providers.
-- Inspect actual DigitalOcean access, services, capacity, backup setup and domain; isolate existing workloads. Deployment requires explicit approval.
-- App identity/name, bundle identifiers, developer-account availability, physical iOS/Android test devices, initial languages and beta audience before signing/release setup.
+If a technical choice would change an agreed user outcome, explain that consequence before changing the rule.
 
-## 4. Recommended next deliverables
+## Facts needed before committing to services or release
 
-Update 2026-11-25: [sync-data-design.md](../architecture/sync-data-design.md) contains the design and a fresh builder review. D1–D7 and the hosted-identity direction are now approved. Catalog-default/late-candidate compatibility checks and provider selection remain engineering work. Implementation remains a later milestone; the foundation/offline plan is ready for review.
+- Service budgets and constraints for sign-in, email and push.
+- Actual DigitalOcean setup, domain, backups and capacity. Inspect before modifying existing services.
+- App name and identifiers, Apple/Google developer accounts, available test devices, initial languages and beta audience.
+- The Go server remains the planning baseline. The historical Spring Boot question is not permission to change it.
 
-1. Review the consolidated behavior and this gap list as a whole, rather than reconfirming approved rules.
-2. Prepare a synchronization/data-model proposal with the high-impact cases above, plus authentication/session integration options. Keep choices marked as proposals until approved.
-3. After that design is approved, write a bounded implementation plan for the foundation and offline mobile slice. Keep the existing milestone boundaries; no full-app scaffold, infrastructure changes or publication is implied by documentation approval.
+No paid provider, deployment or publication is selected by this page.
 
-## 5. Consolidation audit
+## Next steps
 
-- Preserved the final choices where earlier proposals were superseded: deletion wins over restoration; all deletion conflicts notify; unit Keep separate is not remembered, product Keep separate is; account-required onboarding replaces guest use; ordinary decimal precision is rounded; retired names can be reused.
-- Distinguishes list-entry edits from shared catalog editing and item-local unit substitution from explicit household-wide unit combination.
-- Captures the last unsaved note answers: concurrent text keeps both versions with in-app notices to both editors; clear/edit keeps edited text with the same notices, no push.
-- Preserves the chronological decision record in PLAN.md and the untouched source handover. This review does not claim tests, provider selection, completed technical design or implementation readiness.
+Use the [architecture epic](https://github.com/Bazuzu77/shopping-list/issues/33) for design work and the [first-version plan](../superpowers/plans/2026-11-25-foundation-offline-core.md) for the first build milestone. Do not rewrite the completed design discussion from scratch.
+
+This rewrite changes presentation and removes obsolete “unapproved” labels from already-approved decisions. It does not claim that implementation or testing is complete.

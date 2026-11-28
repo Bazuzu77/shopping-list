@@ -1,23 +1,32 @@
-# Architecture and technical design
+# App design — start here
 
-This is the entry point for the app's architecture. Updated 2026-11-28.
+Updated 2026-11-28. These documents explain the planned app in everyday language. You do not need to read code to understand the design.
 
-Tracked by [Epic #33: Architecture and technical design](https://github.com/Bazuzu77/shopping-list/issues/33). The epic owns sign-in selection (#5) and synchronization contracts (#8); implementation stays in the feature epics.
+## What would you like to understand?
 
-## Artifacts
+| Your question | Read this |
+| --- | --- |
+| How does the whole app work? | [How the app fits together](system-overview.md) |
+| What happens when two people work offline? | [How offline changes are combined](sync-data-design.md) |
+| What exactly should users be able to do? | [How the app should behave](../specs/product-behavior.md) |
+| What will we build first? | [The first working version](../superpowers/plans/2026-11-25-foundation-offline-core.md) |
+| What still needs a decision or more detail? | [What remains to be decided](../decisions/remaining-decisions.md) |
 
-| Document | What it provides | Status |
-| --- | --- | --- |
-| [System overview](system-overview.md) | Components, data ownership, security boundaries and deployment shape | Summary of the existing design baseline; not proof of implementation |
-| [Data model and synchronization design](sync-data-design.md) | Offline operations, conflict rules, deletion, recovery and D1–D7 | Direction and presented defaults approved; some precise contracts remain open |
-| [Approved product behavior](../specs/product-behavior.md) | What users should experience | Approved requirements |
-| [Foundation and offline core plan](../superpowers/plans/2026-11-25-foundation-offline-core.md) | First bounded implementation tasks and checks | Prepared for implementation review |
-| [Remaining decisions](../decisions/remaining-decisions.md) | Provider, operating constraints and other engineering work | Open items; later approvals supersede historical entries |
+**Status:** the overall direction and listed user-facing rules are approved. The app has not been implemented. Some technical choices remain open.
 
-## Remaining architecture work
+The sync document and first-version plan include expandable **Engineering reference** sections. Those preserve precise details for the person building the app; the main text explains their purpose.
 
-- [Choose the sign-in service — #5](https://github.com/Bazuzu77/shopping-list/issues/5).
-- [Finish precise synchronization contracts and worked examples — #8](https://github.com/Bazuzu77/shopping-list/issues/8).
-- Concrete database migrations, full endpoint definitions and deployment configuration belong to the implementation plans for their features. Do not mistake the logical model for finished schemas or the overview for running infrastructure.
+## Where progress is tracked
 
-Keep user-facing decisions in the product behavior document, architecture mechanisms here, and live progress on GitHub issues. Updating architecture must not silently change an approved user outcome.
+[Architecture epic #33](https://github.com/Bazuzu77/shopping-list/issues/33) owns:
+
+- [#5 — Choose a sign-in service](https://github.com/Bazuzu77/shopping-list/issues/5).
+- [#8 — Finish the exact rules for exchanging offline changes](https://github.com/Bazuzu77/shopping-list/issues/8).
+
+The [project plan](https://github.com/users/Bazuzu77/projects/1/views/2) shows the wider work. A document being available does not mean its feature is built or its tests have passed.
+
+## Which record should we trust?
+
+Use the current design pages for the current rules, and issues for work status. [PLAN.md](../../PLAN.md) records the discussion history; some older questions were answered later. The [original handover](../reference/CODEX_HANDOVER.md) stays unchanged as a historical source.
+
+Changes to wording must preserve approved behavior. A new user-visible rule still needs to be identified as a new decision.

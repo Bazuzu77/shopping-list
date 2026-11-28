@@ -1,3 +1,59 @@
+# The first working version
+
+**Goal:** prove that shopping amounts and purchases are saved correctly on one phone, even without internet or after closing the app.
+
+**Status:** this is a build plan, not a completed app. It uses clearly marked test accounts. Real sign-in and sharing between phones come later.
+
+## What you will be able to try
+
+- Add a saved product to a shopping list.
+- Set an amount using a whole-number or decimal unit.
+- Buy the remaining amount or enter an amount manually.
+- Undo a purchase.
+- Close and reopen the app without losing saved work.
+- See purchased items in a collapsed section at the bottom.
+- Tell that a change is waiting to sync, without a false “shared successfully” message.
+
+## Four pieces of work
+
+| Step | What we build | How we know it works |
+| --- | --- | --- |
+| [1 — Quantities](https://github.com/Bazuzu77/shopping-list/issues/1) | App setup and reliable number entry | Decimal commas and dots work; whole-unit fractions are rejected; rounding follows the rules |
+| [2 — Purchases](https://github.com/Bazuzu77/shopping-list/issues/2) | Requested, bought and remaining amounts | Independent purchases add; retries do not; undo preserves the requested amount; new needs do not inherit old purchases |
+| [3 — Saved offline work](https://github.com/Bazuzu77/shopping-list/issues/3) | Save the visible change and its reminder to sync together | Crash and restart checks on a real phone database show both saved or neither saved |
+| [4 — Shopping screen](https://github.com/Bazuzu77/shopping-list/issues/4) | A simple development screen using those rules | A full add, buy, restart and undo example works; test data is unavailable in release mode |
+
+## A practical acceptance check
+
+1. Add 2 litres of milk.
+2. Record a purchase of 0.5 litres.
+3. Restart the app: 1.5 litres should remain.
+4. Buy the remaining amount, then add a fresh milk request.
+5. Undo a purchase from the old request: the new request must be unchanged.
+6. Try a fraction of a carton: the app must reject it.
+7. Enter 0.0004 litres: the app must ask for a larger amount or smaller unit rather than save zero.
+
+Also switch between two test accounts and confirm their data and preferences do not leak into each other.
+
+## What this first version does not prove
+
+It does not yet provide real accounts, household invitations, shared synchronization, conflict resolution, push alerts, similarity suggestions, deletion/restoration, custom-unit management, shared notes or release readiness.
+
+Tests of fake storage do not prove that the phone's actual storage survives a crash. Record which Android/iOS devices or simulators were really checked.
+
+## What comes afterwards
+
+Real sign-in and protected local access; the shared server; catching up between phones; the remaining household and shopping features; notifications; then release preparation.
+
+The [product rules](../../specs/product-behavior.md) and [offline design](../../architecture/sync-data-design.md) remain the requirements. This plan does not select paid services or authorize deployment.
+
+## Engineering reference
+
+The exact files, function names, tests and execution steps are preserved below for the implementer.
+
+<details>
+<summary>Open the implementation checklist and technical details</summary>
+
 # Foundation and Offline Core Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans for native execution, or superpowers:subagent-driven-development if the user selects delegation. Steps use checkbox syntax for tracking.
@@ -112,3 +168,5 @@ Next plans, in dependency order: identity/provider feasibility and protected loc
 ## Self-review record
 
 Scope checked against the approved design: this milestone implements only local exact quantities, purchase identity/reversal, new-demand separation and durable outbox boundaries. Deferred features are listed explicitly, not treated as satisfied. Interfaces use the same names across tasks. Each review-focus risk has assertions in its owning task. Future causal compaction is deliberately disabled rather than guessed. No application tests have been executed while writing this plan.
+
+</details>

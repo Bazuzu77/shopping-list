@@ -1,4 +1,152 @@
-# Data Model and Synchronization Proposal
+# How offline changes are combined
+
+Updated 2026-11-28. **The overall design and D1–D7 user outcomes are approved.** Exact exchange formats and complete worked examples are still unfinished in [issue #8](https://github.com/Bazuzu77/shopping-list/issues/8).
+
+## The promise
+
+You can keep shopping without internet. Your phone remembers what you changed, shares it later, and receives the household's confirmed result.
+
+Two different purchases must both count. Sending the same saved purchase again must not count it twice. Older purchases must not accidentally fulfill a new shopping request.
+
+## A simple example
+
+Alice and Bob both see “Buy 2 cartons of milk,” then lose their connections.
+
+- Alice buys 1 carton.
+- Bob buys 2 cartons.
+- After both reconnect, the app records **3 bought, 1 extra**, with both buyers preserved.
+- If Alice's phone sends her saved purchase again because it did not receive a reply, the total stays 3.
+
+Requested amounts follow a different rule. If Alice changes the request to 2 and Bob independently changes it to 3, the default result is **3 requested**, not 5. The household can instead choose “smaller wins” or “ask us.”
+
+## What the phone saves
+
+The app keeps three things:
+
+1. **The last confirmed shared list.**
+2. **Your changes waiting to be shared.**
+3. **The list you currently see**, which includes those pending changes.
+
+A shopping action and its reminder to send must be saved together. If the app crashes halfway through, it must not leave a purchase saved without a way to share it, or a queued purchase missing from the list.
+
+Each change has its own permanent reference number. That lets the server recognize a retry. The change also records which earlier changes the person had seen or depended on. The clock on the phone does not decide who wins.
+
+## What happens on reconnection
+
+```mermaid
+flowchart TD
+  A["Phone reconnects"] --> B["Check account and household access"]
+  B --> C["Send saved changes in the required order"]
+  C --> D["Server applies the agreed rules"]
+  D --> E["Phone downloads confirmed results"]
+  E --> F["Keep any changes still waiting to be shared"]
+```
+
+For example, an undo refers to a particular purchase. If the undo reaches the server first, it waits for that purchase rather than disappearing.
+
+The server saves each accepted result and the updates needed by other phones together. A phone saves the updates it receives together with its place in the update history. That prevents a restart from skipping work.
+
+The same accepted history must lead phones to the same result once they have no pending changes. Some approved rules deliberately depend on which valid action the server accepts first or last; we do not promise that every possible arrival order produces the same outcome.
+
+## When two people edit the same thing
+
+| Situation | What users see |
+| --- | --- |
+| Two people buy something | Both purchases count |
+| The same purchase is sent twice | It counts once |
+| Two requested amounts conflict | The household's larger/smaller/ask rule applies |
+| Two assigned buyers conflict | Unassigned until someone chooses |
+| Two corrections to the same purchase conflict | Keep the amount both people previously agreed on until someone chooses |
+| Undo conflicts with correcting that purchase | Undo wins |
+| Two note edits conflict | Keep both versions |
+| Clearing a note conflicts with editing it | Keep the edited text |
+| People resolve the same choice | The first valid choice accepted by the server stands |
+
+A later edit made after seeing the shared result is a new intentional edit. “Larger wins,” for example, does not prevent someone from deliberately reducing a quantity later.
+
+When a conflict is found, it keeps the household rule in force at that moment. Changing the setting later does not rewrite resolved results or replace the rule for an already-open choice.
+
+A manual choice must identify the conflict it is resolving. If the available choices have changed, an old queued answer must not silently resolve a different situation.
+
+**Still to check:** the proposal for a new competing edit arriving after a choice was already resolved. It must preserve the late person's intent without repeatedly reopening an identical choice.
+
+## The same product can be needed again
+
+“Milk” in the saved product catalog is not the same thing as “milk needed today.”
+
+- Two additions to the same unfinished shopping need can combine under the agreed rules.
+- If a person saw yesterday's milk completed and adds it again today, that is a new need.
+- Purchases and edits referring to yesterday's need stay attached to it.
+- If an offline phone cannot tell whether an addition belongs to the old or new need, the app asks.
+
+When duplicate products or entries combine, the system remembers their original references. It must not count the same purchase through both records.
+
+**Still to check:** exactly how to handle two identical product names created offline with different usual units. The proposal is one product with a choice of future default, while existing list units stay unchanged.
+
+## Seven important decisions already agreed
+
+The D-numbers are simply reference labels used by the backlog and tests.
+
+| Decision | Everyday example | Agreed behavior |
+| --- | --- | --- |
+| D1 — Old or new shopping need? | An offline addition of milk might belong to yesterday's request or today's new one | Keep the information and ask whether to merge with the current need or keep it separate |
+| D2 — Undo after a purchase prevented deletion | Someone deleted an item while another bought it; the purchase kept it visible, then was undone | Keep the item/list visible. Do not silently apply the old deletion again |
+| D3 — Combining custom units | Two people created “litre” and “liter” | Require confirmation that they mean the same measure and scale. Do not combine grams with kilograms; conversion is outside this feature |
+| D4 — Purchase after a rejected unit change | A person changes cartons to litres and buys litres, but a competing carton purchase defeats that unit change | Preserve the dependent purchase for explicit correction. Do not relabel it or add incompatible amounts together |
+| D5 — Lost email or household access | Someone loses their mailbox, or is removed from a household | Use mailbox-provider recovery; no support ownership bypass. Do not export removed-household data |
+| D6 — Competing unit edits | One person changes an unpurchased item to kilograms, another to cartons | Keep the previous unit while asking for a choice. Preserve affected purchases separately for correction |
+| D7 — Previous name is now taken | A rename conflict needs the old name, but a different record now legitimately uses it | Keep both accessible. Mark the conflicted record as needing a name; its temporary label is not a second normal name claim |
+
+These outcomes are not awaiting another round of approval.
+
+## Deleting and restoring
+
+An ordinary deletion can be restored under the approved rules. A permanent deletion cannot.
+
+- A purchase made independently of a deletion can keep an item or list visible.
+- An edit alone does not defeat a concurrent deletion.
+- If deletion and restoration happen independently, deletion wins. A later restoration made after seeing that deletion can still work.
+- Someone who sees a purchase and then deliberately deletes the item can remove it.
+- Restoring old completed shopping history must not change today's new need or create an extra visible row.
+- Hiding a product or unit from future selection keeps existing list entries and purchase history intact, including relevant offline-created entries.
+
+A permanent deletion leaves just enough identifying information to reject old retries, while removing the deleted shopping content. Restoring a backup must not bring that content back into service.
+
+## Phones that have been offline a long time
+
+The server may no longer hold every old update. In that case, it sends a fresh copy of the household's current data.
+
+The phone first protects its pending work and checks which changes were already accepted. It then installs the fresh copy and reapplies only work that is still allowed. Permanently deleted targets stay deleted; uncertain dependencies stay visible as blocked work rather than being silently reassigned.
+
+The exact information to retain for this recovery is part of issue #8. The proposed 90-day update-history window is an engineering starting point, **not** a time limit on restoring an ordinarily deleted list.
+
+## Access and notifications
+
+The server checks both identity and current household membership. Leaving and rejoining must not make an old rejected queue automatically valid.
+
+A phone keeps account data separate. Ordinary sign-in expiry while offline is different from explicit sign-out or confirmed loss of access. Removed users lose access when the phone learns of the removal.
+
+Notifications follow the [approved recipient and channel rules](../specs/product-behavior.md#5-conflict-rules-and-notifications). Reading a notice does not resolve a choice. Push failure does not stop synchronization.
+
+## What must be proven before this is complete
+
+- Restarts and interrupted saves do not lose changes.
+- Retries do not duplicate purchases.
+- Conflicting edits, deletes, restores and unit changes produce the approved result.
+- A long-offline phone catches up without resurrecting deleted data.
+- Different accounts and households cannot see each other's private data.
+- Phone and server calculations agree on shared examples.
+
+These are required checks, not claims that tests have run.
+
+## Engineering reference
+
+This expandable section preserves the precise design notes, proposed limits, message example, technology trade-offs and validation checklist. It is for implementation work; the user-facing explanation is above.
+
+<details>
+<summary>Open the detailed engineering design</summary>
+
+# Detailed engineering design
 
 Date: 2026-11-25
 Status: **Design direction and presented defaults approved on 2026-11-25; implementation not yet authorized.**
@@ -165,7 +313,7 @@ Maintain delete/restore causal actions, not one last-write-wins Boolean. Permane
 
 ### Purchase versus unit changes
 
-Purchases retain the unit seen at action time. An original-unit purchase concurrent with a unit-change intent rejects/supersedes that unit-change intent, preserving the purchase and notifying the editor. New purchases causally depending on the rejected unit change cannot be silently relabeled. **D4:** propose keeping those dependent purchases blocked for the buyer to correct/re-enter with an explicit unit; never automatically count incompatible measures together. This must be tested with three operations, not just a two-operation race.
+Purchases retain the unit seen at action time. An original-unit purchase concurrent with a unit-change intent rejects/supersedes that unit-change intent, preserving the purchase and notifying the editor. New purchases causally depending on the rejected unit change cannot be silently relabeled. **D4 (approved):** keep those dependent purchases blocked for the buyer to correct/re-enter with an explicit unit; never automatically count incompatible measures together. This must be tested with three operations, not just a two-operation race.
 
 All reversals permit a later informed unit change while historical units remain fixed. A delayed purchase not covered by those reversals may require D4 revalidation. An integer-mode change is invalid if affected existing exact quantities are fractional; validate household-wide in the serialized transaction. Unit name/identity combining must also check historical fractional constraints before choosing an integer survivor.
 
@@ -185,7 +333,7 @@ Before reset, retain account-isolated outbox and reconcile known operation outco
 
 Keep one local account namespace/database and separate credentials in OS-backed storage. Propose encrypted SQLite for cached household content, with an account-bound key protected by OS storage; verify native build support before committing the dependency. Logout hides data and removes active credentials but retains protected pending work for the same account. Confirmed removal hides that household and stops reading its cache. Session revocation locks protected views on the next server contact, unlike mere offline token expiry.
 
-**D5 proposed v1 recovery limits:** no support override that transfers an account without proving access to its current email; recover via mailbox provider. Rejected work after membership removal is not exported through a new path that reveals revoked household contents; retain only an access-loss explanation and purge the inaccessible household cache after handling operation outcomes. This narrows the unresolved recovery question and needs approval before implementation.
+**D5 — approved recovery limits:** no support override that transfers an account without proving access to its current email; recover via mailbox provider. Rejected work after membership removal is not exported through a new path that reveals revoked household contents; retain only an access-loss explanation and purge the inaccessible household cache after handling operation outcomes. This is the approved recovery boundary; implementation details still need validation.
 
 ## 8. Authentication and notifications
 
@@ -239,12 +387,12 @@ Use real PostgreSQL transactions and actual SQLite integration tests, plus deter
 
 ## 11. Review decisions and next step
 
-Fresh builder review identified two additional product cases. Proposed defaults for review:
+The review identified two additional cases; their user-facing outcomes were approved on 2026-11-25:
 
-- **D6 — competing unit edits:** when two people change the same unpurchased demand to different units offline, keep its previous unit pending a manual choice. Preserve purchases made against either proposed unit separately as pending facts; never sum incompatible quantities. Apply D4 correction handling where needed. This needs approval because the existing original-unit purchase rule does not settle two unit edits by themselves.
-- **D7 — occupied fallback name:** a delayed rename conflict may need the last common name after another product/unit has already legitimately claimed it. Preserve the existing name claim and show the conflicted object under its previous label with a visible “name needs a choice” marker; that label is not a second active name claim. Resolution must select an available name or an eligible explicit merge. This narrow exception to displaying an ordinary previous name needs approval.
+- **D6 — competing unit edits:** when two people change the same unpurchased demand to different units offline, keep its previous unit pending a manual choice. Preserve purchases made against either proposed unit separately as pending facts; never sum incompatible quantities. Apply D4 correction handling where needed. This extends the original-unit purchase rule to two competing unit edits.
+- **D7 — occupied fallback name:** a delayed rename conflict may need the last common name after another product/unit has already legitimately claimed it. Preserve the existing name claim and show the conflicted object under its previous label with a visible “name needs a choice” marker; that label is not a second active name claim. Resolution must select an available name or an eligible explicit merge. This is the approved exception when displaying the ordinary previous name would create a duplicate name claim.
 
-These are recorded gaps, not completed implementation rules. The next plan must specify causal-metadata compaction without losing the common-base values or generation constraints needed by arbitrarily old offline edits; feed retention alone must not erase them.
+These outcomes are approved; the exact implementation rules still need to be completed. The next plan must specify causal-metadata compaction without losing the common-base values or generation constraints needed by arbitrarily old offline edits; feed retention alone must not erase them.
 
 Review record (presented defaults approved; see approval scope at the top):
 
@@ -258,3 +406,5 @@ Review record (presented defaults approved; see approval scope at the top):
 - Hosted identity direction versus self-hosting, without approving a paid account or vendor yet.
 
 The bounded [foundation/offline implementation plan](../superpowers/plans/2026-11-25-foundation-offline-core.md) is now prepared for review. Select provider/tooling based on verified constraints when its milestone requires it. Do not scaffold or deploy based solely on design approval.
+
+</details>
