@@ -4,6 +4,19 @@
   "nativeHierarchy": "verified: 19 native sub-issue relationships on 2026-11-28",
   "epics": [
     {
+      "id": "E14",
+      "title": "Epic: Architecture and technical design",
+      "children": [
+        5,
+        8
+      ],
+      "goal": "Keep system architecture and technical decisions in one place.",
+      "horizon": "Current release",
+      "relationshipStatus": "native sub-issues verified",
+      "number": 33,
+      "url": "https://github.com/Bazuzu77/shopping-list/issues/33"
+    },
+    {
       "id": "E01",
       "title": "Epic: Offline shopping",
       "children": [
@@ -22,7 +35,6 @@
       "id": "E02",
       "title": "Epic: Accounts and households",
       "children": [
-        5,
         6,
         7
       ],
@@ -36,7 +48,6 @@
       "id": "E03",
       "title": "Epic: Sync and collaboration",
       "children": [
-        8,
         9,
         10,
         11,

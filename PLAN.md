@@ -4,6 +4,8 @@ Updated: 2026-11-25
 
 ## Current reading guide
 
+Architecture organization update — 2026-11-28: [epic #33](https://github.com/Bazuzu77/shopping-list/issues/33) now owns #5 (identity selection) and #8 (sync contracts), preserving their dependencies. [Architecture index](docs/architecture/README.md) links the existing artifacts and new [system overview](docs/architecture/system-overview.md). This consolidates the existing baseline; it does not claim implementation or finalize unresolved technical choices. The project now contains 33 issues across six current and eight future epics.
+
 2026-11-28 update: [GitHub Project](https://github.com/users/Bazuzu77/projects/1/views/2) now holds all 32 issues with Plan, Work board and Future views. Native epic membership (19 links) and blockers (22 links) are verified. This supersedes earlier tool-limit notes. Issue #8 remains partially complete: approved design is uploaded, exact exchange formats and worked examples remain; #2 is related rather than a hard prerequisite. See [dependency diagram](docs/backlog/dependencies.md).
 
 Epic roadmap update — 2026-11-25: issues #20–#24 group the 19 current tasks; #25–#32 capture future nearby sync, supermarket integrations, barcode scanning, recipes/meal planning, shopping insights, AI suggestions, monetization and finally the shared household timetable. Future entries are discovery placeholders outside v1. Native sub-issue relationships remain pending tool support; linked checklists/backlinks preserve the grouping. See [epic index](docs/backlog/README.md) and [hierarchy manifest](docs/backlog/epics.json).

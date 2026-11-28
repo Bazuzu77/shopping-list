@@ -10,15 +10,16 @@ Read [approved behavior](../specs/product-behavior.md), [sync design and approva
 
 [Plan: ordered epics](https://github.com/users/Bazuzu77/projects/1/views/2) · [Work board](https://github.com/users/Bazuzu77/projects/1/views/3) · [Future](https://github.com/users/Bazuzu77/projects/1/views/4) · [Dependency diagram](dependencies.md).
 
-The project contains all 32 issues. It is private to the owner and authorized collaborators; the repository remains public. Roadmap order controls display, not dates or hard dependencies. The timetable stays last. Actual blockers are recorded through native issue relationships.
+The project contains all 33 issues. It is private to the owner and authorized collaborators; the repository remains public. Roadmap order controls display, not dates or hard dependencies. Architecture comes first and the timetable stays last. Actual blockers are recorded through native issue relationships.
 
 ## Epics and future roadmap
 
-Current work is grouped into five tracking epics. Future epics are placeholders, outside the first release; their detailed behavior and implementation are not approved. Their order is indicative, with the shared household timetable explicitly farthest away. The original handover remains unchanged.
+Current work is grouped into six tracking epics. Future epics are placeholders, outside the first release; their detailed behavior and implementation are not approved. Their order is indicative, with the shared household timetable explicitly farthest away. The original handover remains unchanged.
 
+- [Epic: Architecture and technical design](https://github.com/Bazuzu77/shopping-list/issues/33) — #5, #8; [design artifacts](../architecture/README.md)
 - [Epic: Offline shopping](https://github.com/Bazuzu77/shopping-list/issues/20) — #1, #2, #3, #4
-- [Epic: Accounts and households](https://github.com/Bazuzu77/shopping-list/issues/21) — #5, #6, #7
-- [Epic: Sync and collaboration](https://github.com/Bazuzu77/shopping-list/issues/22) — #8, #9, #10, #11, #16
+- [Epic: Accounts and households](https://github.com/Bazuzu77/shopping-list/issues/21) — #6, #7
+- [Epic: Sync and collaboration](https://github.com/Bazuzu77/shopping-list/issues/22) — #9, #10, #11, #16
 - [Epic: Products and shopping lists](https://github.com/Bazuzu77/shopping-list/issues/23) — #12, #13, #14, #15
 - [Epic: Privacy, testing and release](https://github.com/Bazuzu77/shopping-list/issues/24) — #17, #18, #19
 - [Future epic: Device-to-device sync](https://github.com/Bazuzu77/shopping-list/issues/25) — Future
@@ -30,7 +31,7 @@ Current work is grouped into five tracking epics. Future epics are placeholders,
 - [Future epic: Subscriptions and monetization](https://github.com/Bazuzu77/shopping-list/issues/31) — Future
 - [Future epic: Shared household timetable](https://github.com/Bazuzu77/shopping-list/issues/32) — Farthest future
 
-Native relationships verified on 2026-11-28: 19 sub-issues under the five current epics, plus 22 blocked-by links. Checklists and backlinks remain useful navigation. [epics.json](epics.json) and [relationships.json](relationships.json) preserve the grouping and dependency map. This is not a custom GitHub issue-type configuration or a milestone assignment.
+Native relationships verified on 2026-11-28: 19 sub-issues under the six current epics, plus 22 blocked-by links. Checklists and backlinks remain useful navigation. [epics.json](epics.json) and [relationships.json](relationships.json) preserve the grouping and dependency map. This is not a custom GitHub issue-type configuration or a milestone assignment.
 
 ## Individual tasks
 

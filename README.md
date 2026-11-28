@@ -4,6 +4,8 @@ An offline-first household shopping app planned for iOS and Android. This reposi
 
 ## Start here
 
+For the basic technical design, start with the [architecture overview](docs/architecture/system-overview.md) and [artifact index](docs/architecture/README.md), tracked by [epic #33](https://github.com/Bazuzu77/shopping-list/issues/33).
+
 Open the [project plan](https://github.com/users/Bazuzu77/projects/1/views/2), [work board](https://github.com/users/Bazuzu77/projects/1/views/3), or [dependency diagram](docs/backlog/dependencies.md). The project is private; repository documentation remains public.
 
 1. [Product behavior](docs/specs/product-behavior.md) — current approved requirements.
